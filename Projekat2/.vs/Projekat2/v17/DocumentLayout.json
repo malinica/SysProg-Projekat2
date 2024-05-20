@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\stavka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:stavka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Stavka.cs",
+              "DocumentMoniker": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Stavka.cs",
+              "RelativeDocumentMoniker": "Stavka.cs",
+              "ToolTip": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Stavka.cs",
+              "RelativeToolTip": "Stavka.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T11:48:49.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -26,8 +43,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T11:40:46.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T11:40:46.409Z"
             }
           ]
         }
