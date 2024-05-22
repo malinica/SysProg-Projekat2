@@ -13,7 +13,7 @@ namespace Projekat2
     {
         private int mestoCitanja, mestoPisanja;
         private Stavka[] red;
-        private const int kapacitet = 2;
+        private const int kapacitet = 10;
 
         public Red()
         {
@@ -51,6 +51,32 @@ namespace Projekat2
             }
         }
 
+        public Stavka[] SviElementi()
+        {
+            Stavka[] elementi = new Stavka[Velicina()];
+            int indeks = 0;
+            for(int i=mestoCitanja; i!=mestoPisanja;i=(i+1)%kapacitet)
+            {
+                elementi[indeks++] = red[i];
+            }
+            return elementi;
+        }
 
+        public int Velicina()
+        {
+            if(mestoPisanja>=mestoCitanja)
+            {
+                return mestoPisanja - mestoCitanja;
+            }
+            else
+            {
+                return kapacitet - mestoCitanja + mestoPisanja;
+            }
+        }
+
+        public bool Prazan()
+        {
+            return mestoPisanja == mestoCitanja;
+        }
     }
 }
