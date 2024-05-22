@@ -1,0 +1,7 @@
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.exe.config
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.exe
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.pdb
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.AssemblyReference.cache
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.CoreCompileInputs.cache
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.exe
+C:\Users\Acer Swift 3\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.pdb

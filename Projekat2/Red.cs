@@ -30,7 +30,7 @@ namespace Projekat2
             }
             else
             {
-                Console.WriteLine("Ne moze se dodati element jer je red pun.");
+                Console.WriteLine("Ne moze se dodati element jer je red pun.\n");
             }
         }
 
@@ -47,7 +47,7 @@ namespace Projekat2
             }
             else
             {
-                Console.WriteLine("Red je prazan, nema nista za brisanje.");
+                Console.WriteLine("Red je prazan, nema nista za brisanje.\n");
             }
         }
 
@@ -74,9 +74,28 @@ namespace Projekat2
             }
         }
 
+        public Stavka UzmiIzReda()
+        {
+            if (mestoCitanja == mestoPisanja)
+            {
+                Console.WriteLine("Red je prazan, nema nista za uzimanje.\n");
+                return null;
+            }
+            Stavka element = red[mestoCitanja];
+            red[mestoCitanja] = null;
+            mestoCitanja = (mestoCitanja + 1) % kapacitet;
+            return element;
+        }
+
         public bool Prazan()
         {
             return mestoPisanja == mestoCitanja;
+        }
+
+        public void Obrisi()
+        {
+            red = new Stavka[kapacitet];
+            mestoCitanja = mestoPisanja = 0;
         }
     }
 }

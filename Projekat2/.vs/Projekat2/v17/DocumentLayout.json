@@ -3,15 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\red.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:red.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\kes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:kes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\stavka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|c:\\users\\acer swift 3\\desktop\\sysprog-projekat2\\projekat2\\red.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:red.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\stavka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81B7424B-E40D-48FE-ABB2-4DB8A973D4C0}|Projekat2.csproj|solutionrelative:stavka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Stavka.cs",
               "DocumentMoniker": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Stavka.cs",
               "RelativeDocumentMoniker": "Stavka.cs",
@@ -35,18 +39,17 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-22T19:19:20.144Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Red.cs",
               "DocumentMoniker": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Red.cs",
               "RelativeDocumentMoniker": "Red.cs",
               "ToolTip": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Red.cs",
               "RelativeToolTip": "Red.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAJAAAA",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAswCAAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T11:53:23.288Z",
               "IsPinned": true,
@@ -60,9 +63,23 @@
               "RelativeDocumentMoniker": "Kes.cs",
               "ToolTip": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Kes.cs",
               "RelativeToolTip": "Kes.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAmwKAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T11:53:06.992Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Acer Swift 3\\Desktop\\SysProg-Projekat2\\Projekat2\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBoAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T19:57:01.139Z",
               "IsPinned": true,
               "EditorCaption": ""
             }
