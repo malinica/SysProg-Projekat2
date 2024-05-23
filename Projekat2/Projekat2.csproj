@@ -46,7 +46,6 @@
     <Compile Include="Kes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Red.cs" />
     <Compile Include="Stavka.cs" />
   </ItemGroup>
   <ItemGroup>
