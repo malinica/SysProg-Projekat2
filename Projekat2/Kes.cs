@@ -13,13 +13,13 @@ namespace Projekat2
         private ReaderWriterLockSlim _kesLock;
         private Dictionary<string, Stavka> _kes;
         private const int kesKapacitet = 2;
-        private Red red;
+        private Queue<string> red;
 
         public Kes()
         {
             _kesLock = new ReaderWriterLockSlim();
             _kes = new Dictionary<string, Stavka>(kesKapacitet);
-            red = new Red();
+            red = new Queue<string>(kesKapacitet);
         }
 
         public void DodajUKes(string key, int ukupno1, string podaci1, int timeout)
@@ -35,20 +35,11 @@ namespace Projekat2
 
                 if (_kes.Count == kesKapacitet)
                 {
-                    Stavka zaBrisanje = red.UzmiIzReda();
-                    string kljucZaBrisanje = null;
-                    foreach (var k in _kes)
-                    {
-                        if (k.Value == zaBrisanje)
-                        {
-                            kljucZaBrisanje = k.Key;
-                            break;
-                        }
-                    }
+                    string kljucZaBrisanje = red.Dequeue();
                     _kes.Remove(kljucZaBrisanje);
                 }
 
-                red.DodajURed(stavka);
+                red.Enqueue(key);
                 _kes.Add(key, stavka);
             }
             catch (Exception ex)
@@ -70,9 +61,9 @@ namespace Projekat2
             }
 
             Console.WriteLine("Redosled za izbacivanje iz kesa:");
-            foreach (var stavka in red.SviElementi())
+            foreach (var key in red)
             {
-                Console.WriteLine(stavka.ToString());
+                Console.WriteLine(key);
             }
             Console.WriteLine("\n\n");
         }
@@ -128,7 +119,7 @@ namespace Projekat2
             try
             {
                 _kes.Clear();
-                red.Obrisi();
+                red.Clear();
             }
             catch (Exception ex)
             {
@@ -145,9 +136,17 @@ namespace Projekat2
             _kesLock.EnterWriteLock();
             try
             {
-                if (_kes.Count != 0 && ImaKljuc(key))
+                if (_kes.Remove(key))
                 {
-                    _kes.Remove(key);
+                    var tempQueue = new Queue<string>(); ;
+                    foreach(var k in red)
+                    {
+                        if(k!=key)
+                        {
+                            tempQueue.Enqueue(k);
+                        }
+                    }
+                    red = tempQueue;
                 }
             }
             catch (Exception ex)
@@ -165,7 +164,10 @@ namespace Projekat2
             _kesLock.EnterReadLock();
             try
             {
-                return _kes.ContainsKey(key) ? _kes[key] : null;
+                if (_kes.TryGetValue(key, out Stavka stavka))
+                    return stavka;
+                else
+                    return null;
             }
             catch (Exception ex)
             {
