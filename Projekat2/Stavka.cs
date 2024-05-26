@@ -1,26 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Projekat1
+namespace Projekat2
 {
     public class Stavka
     {
-        public int Ukupno { get; set; }
-        public string Podaci { get; set; }
-        public DateTime VremeKreiranja { get; set; }
+        public Dictionary<int, string> stavka { get; set; }
 
         public Stavka()
         {
-            VremeKreiranja = DateTime.UtcNow;
+            stavka = new Dictionary<int, string>();
         }
-        public Stavka(int u, string p)
+
+        public void Dodaj(int id,string ime)
         {
-            Ukupno = u;
-            Podaci = p;
-            VremeKreiranja = DateTime.UtcNow;
+            stavka.Add(id,ime);
         }
         public override string ToString()
         {
-            return $" kreirano: {VremeKreiranja}, ima ukupno {Ukupno} podataka: {Podaci}";
+            string rezultat = "";
+            foreach (var par in stavka)
+            {
+                rezultat += $"ID stavke: {par.Key}, Naslov dela: {par.Value} \n";
+            }
+            return rezultat;
         }
     }
 }

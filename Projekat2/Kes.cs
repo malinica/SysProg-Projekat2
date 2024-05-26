@@ -12,26 +12,25 @@ namespace Projekat2
     {
         private ReaderWriterLockSlim _kesLock;
         private Dictionary<string, Stavka> _kes;
-        private const int kesKapacitet = 2;
+        private int kesKapacitet;
         private Queue<string> red;
 
-        public Kes()
+        public Kes(int Kapacitet)
         {
+            kesKapacitet = Kapacitet;
             _kesLock = new ReaderWriterLockSlim();
             _kes = new Dictionary<string, Stavka>(kesKapacitet);
             red = new Queue<string>(kesKapacitet);
         }
 
-        public void DodajUKes(string key, int ukupno1, string podaci1, int timeout)
+        public void DodajUKes(string key,Stavka s )
         {
             try
             {
-                if (!_kesLock.TryEnterWriteLock(timeout))
+                if (!_kesLock.TryEnterWriteLock(10))
                     return;
                 if (_kes.ContainsKey(key))
                     throw new Exception("Element je vec u kesu.\n");
-
-                Stavka stavka = new Stavka(ukupno1, podaci1);
 
                 if (_kes.Count == kesKapacitet)
                 {
@@ -40,7 +39,7 @@ namespace Projekat2
                 }
 
                 red.Enqueue(key);
-                _kes.Add(key, stavka);
+                _kes.Add(key, s);
             }
             catch (Exception ex)
             {
