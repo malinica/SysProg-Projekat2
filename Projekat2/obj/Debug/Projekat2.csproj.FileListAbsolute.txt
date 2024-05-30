@@ -15,3 +15,13 @@ C:\Users\Marko\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.pdb
 C:\Users\Marko\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Marko\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Marko\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.Up2Date
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.exe.config
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.exe
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Projekat2.pdb
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.csproj.Up2Date
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.exe
+C:\Users\User\Desktop\SysProg-Projekat2\Projekat2\obj\Debug\Projekat2.pdb

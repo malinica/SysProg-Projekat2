@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Net.Http;
@@ -28,6 +29,8 @@ namespace Projekat2
         {
             try
             {
+//                    Stopwatch stopwatch = new Stopwatch();
+                    SemaphoreSlim semaphore = new SemaphoreSlim(80);
                 string url = baseUrl +"?"+ kljuc;
                 HttpResponseMessage response = await client.GetAsync(url);
                // Console.WriteLine(url);
@@ -40,30 +43,43 @@ namespace Projekat2
                                         .Select(id => (int)id)
                                         .ToArray();
                     Stavka s = new Stavka();
-                     
+
+ //                   stopwatch.Start();
+                    List<Task> tasks = new List<Task>();
+
                     foreach (int o in objectIDs)
                     {
-                        try
-                        {
-                            //Console.WriteLine("https://collectionapi.metmuseum.org/public/collection/v1/objects/" + o);
-                            HttpResponseMessage response2 = await client.GetAsync("https://collectionapi.metmuseum.org/public/collection/v1/objects/" + o);
+                        await semaphore.WaitAsync();
 
-                            if (response2.IsSuccessStatusCode)
+                        Task task = Task.Run(async () =>
+                        {
+                            try
                             {
-                                var rezultatStringUpit = await response2.Content.ReadAsStringAsync();
-                                JToken rezultatJSONUpit = JToken.Parse(rezultatStringUpit);
-                                var ime = (rezultatJSONUpit["title"]).ToString();
-                                s.Dodaj(o, ime);
+                                HttpResponseMessage response2 = await client.GetAsync($"https://collectionapi.metmuseum.org/public/collection/v1/objects/{o}");
+
+                                if (response2.IsSuccessStatusCode)
+                                {
+                                    var rezultatStringUpit = await response2.Content.ReadAsStringAsync();
+                                    JToken rezultatJSONUpit = JToken.Parse(rezultatStringUpit);
+                                    var ime = (rezultatJSONUpit["title"]).ToString();
+                                    s.Dodaj(o, ime);
+                                }
                             }
-                        }
-                        catch(Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            return null;
-                        }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                            finally
+                            {
+                                semaphore.Release();
+                            }
+                        });
 
+                        tasks.Add(task);
                     }
-
+                    await Task.WhenAll(tasks);
+ //                   stopwatch.Stop();
+ //                   Console.WriteLine($"Vreme izvršavanja: {stopwatch.ElapsedMilliseconds} ");
                     return s;
                 }
                 else
