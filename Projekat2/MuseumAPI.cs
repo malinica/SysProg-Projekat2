@@ -29,11 +29,11 @@ namespace Projekat2
         {
             try
             {
-//                    Stopwatch stopwatch = new Stopwatch();
-                    SemaphoreSlim semaphore = new SemaphoreSlim(80);
-                string url = baseUrl +"?"+ kljuc;
+                //                    Stopwatch stopwatch = new Stopwatch();
+                SemaphoreSlim semaphore = new SemaphoreSlim(80);
+                string url = baseUrl + "?" + kljuc;
                 HttpResponseMessage response = await client.GetAsync(url);
-               // Console.WriteLine(url);
+                // Console.WriteLine(url);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -44,7 +44,7 @@ namespace Projekat2
                                         .ToArray();
                     Stavka s = new Stavka();
 
- //                   stopwatch.Start();
+                    //                   stopwatch.Start();
                     List<Task> tasks = new List<Task>();
 
                     foreach (int o in objectIDs)
@@ -78,8 +78,8 @@ namespace Projekat2
                         tasks.Add(task);
                     }
                     await Task.WhenAll(tasks);
- //                   stopwatch.Stop();
- //                   Console.WriteLine($"Vreme izvršavanja: {stopwatch.ElapsedMilliseconds} ");
+                    //                   stopwatch.Stop();
+                    //                   Console.WriteLine($"Vreme izvršavanja: {stopwatch.ElapsedMilliseconds} ");
                     return s;
                 }
                 else

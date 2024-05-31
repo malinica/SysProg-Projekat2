@@ -10,27 +10,41 @@ namespace Projekat2
 {
     internal class Kes
     {
-        private ReaderWriterLockSlim _kesLock;
+        private Semaphore _kesLock;
         private Dictionary<string, Stavka> _kes;
         private int kesKapacitet;
         private Queue<string> red;
+        private int interval = 30000;
+        private bool _istekao = false;
 
         public Kes(int Kapacitet)
         {
             kesKapacitet = Kapacitet;
-            _kesLock = new ReaderWriterLockSlim();
+            _kesLock = new Semaphore(1, 1);
             _kes = new Dictionary<string, Stavka>(kesKapacitet);
             red = new Queue<string>(kesKapacitet);
+            PokreniPeriodicnoBrisanje();
         }
 
-        public void DodajUKes(string key,Stavka s )
+        private async void PokreniPeriodicnoBrisanje()
+        {
+            while (true) 
+            {
+                await Task.Delay(interval);
+                _istekao = true;
+            }
+        }
+
+        public void DodajUKes(string key, Stavka s)
         {
             try
             {
-                if (!_kesLock.TryEnterWriteLock(10))
-                    return;
+                _kesLock.WaitOne();
                 if (_kes.ContainsKey(key))
-                    throw new Exception("Element je vec u kesu.\n");
+                {
+                    Console.WriteLine("Element je vec u kesu.");
+                    return;
+                }
 
                 if (_kes.Count == kesKapacitet)
                 {
@@ -40,6 +54,7 @@ namespace Projekat2
 
                 red.Enqueue(key);
                 _kes.Add(key, s);
+                TrenutnoStanje();
             }
             catch (Exception ex)
             {
@@ -47,7 +62,7 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitWriteLock();
+                _kesLock.Release();
             }
         }
 
@@ -56,20 +71,22 @@ namespace Projekat2
             Console.WriteLine("Kljucevi koji se nalaze u kesu su:");
             foreach (var key in _kes.Keys)
             {
-                Console.WriteLine($" {key} ");
+                if (red.Contains(key))
+                    Console.WriteLine($" {key} ");
             }
 
             Console.WriteLine("Redosled za izbacivanje iz kesa:");
             foreach (var key in red)
             {
-                Console.WriteLine(key);
+                if (_kes.ContainsKey(key))
+                    Console.WriteLine($" {key} ");
             }
             Console.WriteLine("\n\n");
         }
 
         public void StampajStavkuKesa(string key)
         {
-            _kesLock.EnterReadLock();
+            _kesLock.WaitOne();
             try
             {
                 if (_kes.TryGetValue(key, out Stavka k))
@@ -87,13 +104,13 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitReadLock();
+                _kesLock.Release();
             }
         }
 
         public void StampajSadrzajKesa()
         {
-            _kesLock.EnterReadLock();
+            _kesLock.WaitOne();
             try
             {
                 Console.WriteLine("Sadrzaj kesa:\n");
@@ -108,13 +125,13 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitReadLock();
+                _kesLock.Release();
             }
         }
 
         public void ObrisiCeoKes()
         {
-            _kesLock.EnterWriteLock();
+            _kesLock.WaitOne();
             try
             {
                 _kes.Clear();
@@ -126,21 +143,56 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitWriteLock();
+                _kesLock.Release();
+            }
+        }
+
+        public void PeriodicnoBrisanje()
+        {
+            if(_istekao)
+            {
+                _kesLock.WaitOne();
+                try
+                {
+                    DateTime trenutnoVreme=DateTime.Now;
+                    List<string> istekliKljucevi = new List<string>();
+
+                    foreach(var k in _kes)
+                    {
+                        if(trenutnoVreme.Subtract(k.Value.VremeKreiranja).TotalMilliseconds >= interval)
+                        {
+                            istekliKljucevi.Add(k.Key);
+                        }
+                    }
+
+                    foreach(string key in istekliKljucevi)
+                    {
+                        _kes.Remove(key);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    _istekao = false;
+                    _kesLock.Release();
+                }
             }
         }
 
         public void ObrisiIzKesa(string key)
         {
-            _kesLock.EnterWriteLock();
+            _kesLock.WaitOne();
             try
             {
                 if (_kes.Remove(key))
                 {
                     var tempQueue = new Queue<string>(); ;
-                    foreach(var k in red)
+                    foreach (var k in red)
                     {
-                        if(k!=key)
+                        if (k != key)
                         {
                             tempQueue.Enqueue(k);
                         }
@@ -154,13 +206,13 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitWriteLock();
+                _kesLock.Release();
             }
         }
 
         public Stavka CitajIzKesa(string key)
         {
-            _kesLock.EnterReadLock();
+            _kesLock.WaitOne();
             try
             {
                 if (_kes.TryGetValue(key, out Stavka stavka))
@@ -175,13 +227,13 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitReadLock();
+                _kesLock.Release();
             }
         }
 
         public bool ImaKljuc(string key)
         {
-            _kesLock.EnterReadLock();
+            _kesLock.WaitOne();
             try
             {
                 return _kes.ContainsKey(key);
@@ -193,7 +245,7 @@ namespace Projekat2
             }
             finally
             {
-                _kesLock.ExitReadLock();
+                _kesLock.Release();
             }
         }
     }

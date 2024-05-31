@@ -45,6 +45,7 @@ namespace Projekat1
                     {
                         Task task = ProcessRequest(context);
                     });
+                    kes.PeriodicnoBrisanje();
                 }
             }
             catch (Exception ex)
@@ -64,10 +65,10 @@ namespace Projekat1
                 if (zahtev.Request.HttpMethod != "GET")
                     await OdgovoriNaZahtev(400, null, zahtev);
                 string Putanja = zahtev.Request.Url.ToString();
-               // Console.WriteLine(Putanja);
-                if(Putanja.Contains("favicon.ico"))
+                // Console.WriteLine(Putanja);
+                if (Putanja.Contains("favicon.ico"))
                 {
-                    await OdgovoriNaZahtev(400,null,zahtev);
+                    await OdgovoriNaZahtev(400, null, zahtev);
                     return;
                 }
                 if (!Putanja.StartsWith(($"{adresa}:{port}/")))
@@ -82,17 +83,17 @@ namespace Projekat1
                 {
                     Stavka stavkaIzKesa = new Stavka();
                     stavkaIzKesa = kes.CitajIzKesa(parametarPretrage);
-                    await OdgovoriNaZahtev(200, "Key je: "+parametarPretrage+"\n" + stavkaIzKesa.ToString(), zahtev);
+                    await OdgovoriNaZahtev(200, "Key je: " + parametarPretrage + "\n" + stavkaIzKesa.ToString(), zahtev);
                 }
                 else
                 {
 
                     var rezultat = await museum.GetPodaci(parametarPretrage);
-                    if (rezultat== null)
+                    if (rezultat == null)
                     {
                         await OdgovoriNaZahtev(400, "Nema podataka za zadati parametar", zahtev);
                         throw new Exception("Nema podataka za zadati parametar");
-                        
+
                     }
                     else
                     {
@@ -157,8 +158,8 @@ namespace Projekat1
                 return;
             }
         }
-    
-    public string izdvojiParametre(string Putanja)
+
+        public string izdvojiParametre(string Putanja)
         {
             try
             {
