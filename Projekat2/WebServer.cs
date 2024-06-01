@@ -45,7 +45,6 @@ namespace Projekat1
                     {
                         Task task = ProcessRequest(context);
                     });
-                    kes.PeriodicnoBrisanje();
                 }
             }
             catch (Exception ex)
@@ -87,9 +86,8 @@ namespace Projekat1
                 }
                 else
                 {
-
                     var rezultat = await museum.GetPodaci(parametarPretrage);
-                    if (rezultat == null)
+                    if (rezultat == null || rezultat.stavka.Count == 0)
                     {
                         await OdgovoriNaZahtev(400, "Nema podataka za zadati parametar", zahtev);
                         throw new Exception("Nema podataka za zadati parametar");
@@ -119,6 +117,10 @@ namespace Projekat1
             response.StatusCode = responseCode;
 
             string body;
+            if (text == null)
+            {
+                text = "Bad request";
+            }
             if (responseCode == 400)
             {
                 response.ContentType = "text/html";
@@ -159,6 +161,7 @@ namespace Projekat1
             }
         }
 
+
         public string izdvojiParametre(string Putanja)
         {
             try
@@ -169,6 +172,7 @@ namespace Projekat1
 
                 string queryParams = urlParts[1];
                 string[] paramsList = queryParams.Split('&');
+                int brojparametara = 0;
                 int artistOrCulture = -1, isOnView = -1, isHighlight = -1, departmentId = -1;//-1 nije naveden,1 true,0 false
                 string q = null, medium = null;
                 foreach (var parameter in paramsList)
@@ -181,46 +185,82 @@ namespace Projekat1
                             case "artistOrCulture":
                                 {
                                     if (keyValue[1] == "true")
+                                    {
                                         artistOrCulture = 1;
+                                        brojparametara++;
+                                    }
                                     else
+                                    {
                                         artistOrCulture = 0;
+                                        brojparametara++;
+                                    }
 
                                     break;
                                 }
                             case "isOnView":
                                 {
                                     if (keyValue[1] == "true")
+                                    {
                                         isOnView = 1;
+                                        brojparametara++;
+                                    }
                                     else
+                                    {
                                         isOnView = 0;
+                                        brojparametara++;
+
+                                    }
 
                                     break;
                                 }
                             case "isHighlight":
                                 {
                                     if (keyValue[1] == "true")
+                                    {
                                         isHighlight = 1;
+                                        brojparametara++;
+
+                                    }
                                     else
+                                    {
+                                        brojparametara++;
                                         isHighlight = 0;
+                                    }
 
                                     break;
                                 }
 
                             case "q":
-                                q = keyValue[1];
-                                break;
+                                {
+                                    q = keyValue[1];
+                                    brojparametara++;
+
+                                    break;
+                                }
                             case "medium":
-                                medium = keyValue[1];
-                                break;
+                                {
+                                    medium = keyValue[1];
+                                    brojparametara++;
+
+                                    break;
+                                }
                             case "departmentId":
-                                int.TryParse(keyValue[1], out departmentId);
-                                break;
+                                {
+                                    int.TryParse(keyValue[1], out departmentId);
+                                    brojparametara++;
+                                    break;
+                                }
+
                             default:
                                 {
                                     return null;
                                 }
                         }
                     }
+                }
+                if (paramsList.Count() != brojparametara)
+                {
+                    return null;
                 }
                 string parametarPretrage = null;
                 if (departmentId != -1)
@@ -247,6 +287,8 @@ namespace Projekat1
                 {
                     parametarPretrage += "medium=" + medium;
                 }
+                if (parametarPretrage == null)
+                    return null;
                 if (parametarPretrage.EndsWith("&"))
                 {
                     parametarPretrage = parametarPretrage.Substring(0, parametarPretrage.Length - 1);

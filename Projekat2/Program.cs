@@ -11,7 +11,6 @@ namespace Projekat2
     {
         static async Task Main(string[] args)
         {
-
             WebServer server = new WebServer("https://collectionapi.metmuseum.org/public/collection/v1/search", 10);
             await server.Start();
         }
